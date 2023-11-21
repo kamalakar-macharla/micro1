@@ -5,6 +5,7 @@ node {
         try {
             //build() // Call the common function
             echo "Build is running..."
+            checkout scm
             bat'''
               dir
             '''
