@@ -1,15 +1,13 @@
 @Library('jenkins-shared-libraries@main') _
 
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    build() // Call the common function
-                }
-            }
+node {
+    stage('Build') {
+        try {
+            build() // Call the common function
+        } catch (Exception e) {
+            currentBuild.result = 'FAILURE'
+            throw e
         }
     }
 }
+
